@@ -1,0 +1,107 @@
+.bheader {
+  color:#FFFF;
+  height: 60px;
+}
+.bheader-90 {
+  color:#FFFF;
+  height: 90px;
+}
+
+.bh-text-header {
+  padding-left: 10px;
+  padding-right: 10px;
+}
+
+.bh-button {
+  padding-left: 10px;
+  padding-right: 10px;
+}
+
+.square-div {
+  border:1px solid white;
+}
+
+.rheader {
+  padding: 10px 10px 10px 10px !important;
+}
+
+.sheader {
+  padding: 5px 10px 5px !important;
+}
+
+
+.addmore-center:hover{
+   background-color:#F0F0F0;
+}
+
+.addmore-center-grey:hover{
+   background-color:#D3D3D3;
+}
+
+div.centerbtn {
+  margin: 10px 0px 0px 0px;
+  background-color: #DDDD !important;
+  height: 2.8em;
+  display: flex;
+  align-items: center;
+  justify-content: center }
+div.centerbtn a {
+  margin: 0 }
+
+
+.custom-pad {
+  margin-top: 30px !important;
+}
+
+
+
+.features-icons {
+  padding-top: 7rem;
+  padding-bottom: 7rem;
+}
+
+.features-icons .features-icons-item {
+  max-width: 20rem;
+}
+
+.features-icons .features-icons-item .features-icons-icon {
+  height: 7rem;
+}
+
+.features-icons .features-icons-item .features-icons-icon i {
+  font-size: 4.5rem;
+}
+
+.features-icons .features-icons-item:hover .features-icons-icon i {
+  font-size: 5rem;
+}
+
+/* MAKE INPUT ALL CAPITAL */
+input {
+    text-transform: uppercase;
+}
+textarea {
+    text-transform: uppercase;
+}
+::-webkit-input-placeholder { /* WebKit browsers */
+    text-transform: none;
+}
+:-moz-placeholder { /* Mozilla Firefox 4 to 18 */
+    text-transform: none;
+}
+::-moz-placeholder { /* Mozilla Firefox 19+ */
+    text-transform: none;
+}
+:-ms-input-placeholder { /* Internet Explorer 10+ */
+    text-transform: none;
+}
+::placeholder { /* Recent browsers */
+    text-transform: none;
+}
+/* END */
+
+@media (min-width: 1200px) {
+   .modal-cxl {
+      width: 90%;
+   }
+}
