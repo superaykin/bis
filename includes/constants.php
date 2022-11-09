@@ -12,7 +12,7 @@
     define("PASSWORD", "p@55word");  //cadoit7
 
     // database's server
-    define("SERVER", "192.168.40.162:3308"); //192.168.5.200
+    define("SERVER", "localhost:3308"); //192.168.5.200
 
 
 ?>
