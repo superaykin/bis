@@ -28,7 +28,7 @@
 
           render("./center/info.php", ["info" => $info, "teachers" => $teachers, "class" => $class, "avail_teacher" => $avail_teacher]);
         } else if($page == "new") {
-          if(lookup_role('SYS_ADMIN') == false OR lookup_role('CARDINAL') == false) {
+          if(lookup_role('SYS_ADMIN') == false AND lookup_role('CARDINAL') == false) {
             error401();
           }
           $brgy = get_brgy('PANABO'); // get all barangay under panabo

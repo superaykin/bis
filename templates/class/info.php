@@ -12,7 +12,7 @@
       <div class="modal-header bg-aqua-active">
         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
           <span aria-hidden="true">&times;</span></button>
-        <h4 class="modal-title">ADD STUDENT</h4>
+        <h4 class="modal-title">ENROLL STUDENT</h4>
       </div>
 
       <form id="addstudentform" role="form" data-toggle="validator" method="post" accept-charset="utf-8" enctype="multipart/form-data" autocomplete="off">
@@ -257,8 +257,8 @@
       <div class="modal-body">
         <table class="table">
           <thead>
-            <th>Student ID</th>
-            <th>Lastname</th>
+            <th>ID</th>
+            <th>Name</th>
             <th>Address</th>
             <th>Age</th>
             <th>Latest ECCD Result</th>
@@ -289,7 +289,7 @@
                 <?= '<td class="text-purple">' . $s["student_idno"] . '</td>' ?>
                 <?= '<td>' . name_format($s["lastname"], $s["firstname"], $s["middlename"], $s["suffix"], "LF") . '</td>' ?>
                 <?= '<td>' . address_format($s["address_city"], $s["address_brgy"], $s["address_street"]) . '</td>' ?>
-                <?= '<td>' . get_age($s["birthdate"]) . ' y.o</td>' ?>
+                <?= '<td>' . get_age($s["birthdate"]) . '</td>' ?>
                 <?= '<td>' . $lbl1 . $res . '</td>' ?>
                 <?= '<td>' . $lbl2 . $enstat . '</td>' ?>
                 <?= '<td>' . $s["student_remarks"] . '</td>' ?>
@@ -343,7 +343,8 @@
 
           <div class="form-group">
             <label>Notes/Remarks</label>
-            <textarea class="form-control" name="remarks"></textarea>
+            <textarea class="form-control" name="remarks" required></textarea>
+            <span class="help-block">Please state the reason of the transfer here. This note will serve as a guide for the acceptance of the transfer.</span>
           </div>
 
           <h4 class="sheader bg-red">Account Verification</h4>
@@ -352,13 +353,17 @@
             <input type="password" name="password" class="form-control" required>
           </div>
 
+          <h4 class="sheader bg-aqua">System Note</h4>
+          <span>After submission of this form, the request will be saved and will only take effect if the opposite party or a system administrator will accept the transfer request.</span>
+
 
         </div>
         <div class="modal-footer">
+          <input type="hidden" name="class_id" value="<?= $info["cid"] ?>" />
           <input type="hidden" id="sid" name="sid" />
           <input type="hidden" id="trans_eid" name="eid" />
           <button type="button" class="btn btn-default btn-flat pull-left" data-dismiss="modal">Close</button>
-          <button type="submit" class="btn btn-primary btn-flat">TRANSFER STUDENT</button>
+          <button type="submit" class="btn btn-primary btn-flat">SUBMIT REQUEST</button>
         </div>
       </form>
 
@@ -391,7 +396,7 @@
                 <?php if(is_class_teacher_allowed($info["cid"]) <> false) : ?>
                   <div class="col-md-2">
                     <button type="button" class="btn btn-flat btn-block btn-sm btn-primary" data-toggle="modal" data-target="#addstudent">
-                      <i class="fa fa-plus"></i> ADD STUDENT
+                      <i class="fa fa-plus"></i> ENROLL STUDENT
                     </button>
                   </div>
                 <?php endif; ?>
@@ -881,15 +886,15 @@
             if (result.value) {
               $.ajax({
                 type: 'post',
-                url: './ajax/class/transfer.php',
+                url: './ajax/class/transrequest.php',
                 data: $('#transferform').serialize(),
                 success: function (results) {
           				swal.close();
                   console.log(results);
                   var o = jQuery.parseJSON(results);
             				if(o.result === "success") {
-                      swal({title: "Transfer success",
-                        text: "Student has been successfully transfered.",
+                      swal({title: "Transfer is requested",
+                        text: "Request of student transfer has been submitted. Please wait for the approval of the request.",
                         type:"success"})
                       .then(function () {
                         location.reload();
@@ -899,6 +904,14 @@
                       swal({
                         title: "Error!",
                         text: "Invalid account credential!",
+                        type:"error"
+                      });
+                      console.log(results);
+                    }
+                    else if(o.result === "studenthaspendingtransfer") {
+                      swal({
+                        title: "Error!",
+                        text: "Student has active transfer request. Please contact system administrator.",
                         type:"error"
                       });
                       console.log(results);

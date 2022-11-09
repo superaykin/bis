@@ -2,10 +2,9 @@
     // configuration
     require("includes/config.php");
     $allowed = ["CARDINAL", "SYS_ADMIN"];
-    if(is_allowed($allowed) == false) {
-      gotomain();
-    }
-
+    // if(is_allowed($allowed) == false) {
+    //   gotomain();
+    // }
 
     if($_SERVER["REQUEST_METHOD"] === "POST") {
 
@@ -24,6 +23,11 @@
         else if($page == "account") {
           if(isset($_GET["id"])) {
             $id = valinput($_GET["id"]);
+
+            // verify
+            if($id <> $GLOBALS["_uid"] AND is_allowed($allowed) == false) {
+              redirect("./sys.php?page=401"); exit();
+            }
 
             $user = sys_get_user_info($id);
             $roles = sys_get_user_roles($id);

@@ -30,7 +30,7 @@
     				<div class="box-body">
               <div class="table-responsive">
 
-                  <table id="classlist" class="table table-bordered table-hover">
+                  <table id="classlist" class="table table-bordered table-hover table-striped">
         						<thead>
         							<tr>
                         <th>Center</th>

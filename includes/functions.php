@@ -452,7 +452,7 @@
       $cdc_code = $GLOBALS["_codings"][$cdc_no];
       $psuedo_no = generate_uuid(5);
 
-      return $cdc_code . valinputupper($psuedo_no) . date("y") . rand(10, 99);
+      return $cdc_code . valinputupper($psuedo_no) . rand(10, 99);
     }
 
     function create_user_id() {

@@ -30,16 +30,21 @@
       $contact = valinput($_POST["contactno"]);
       $remarks = valinputupper($_POST["remarks"]);
 
+      $birth_registered = valinputupper($_POST["birthregistered"]);
+      $mothername = valinputupper($_POST["mothername"]);
+      $fathername = valinputupper($_POST["fathername"]);
+      $guardian = valinputupper($_POST["guardian"]);
+
       $created_date = date("Y-m-d H:i:s");
       $actor = $GLOBALS["_uid"];
 
       // update entity table
       $res = query("UPDATE entity SET lastname = ?, firstname = ?, middlename = ?, suffix = ?, sex = ?, birthdate = ?, birthplace = ?, birthorder = ?,
         address_city = ?, address_brgy = ?, address_street = ?, ethnicity = ?, religion = ?, ips = ?, 4ps = ?, pwd = ?, contactno = ?, profile_remarks = ?,
-        profile_status = ?
+        profile_status = ?, birth_registered = ?, mother_name = ?, father_name = ?, guardian_name = ?
         WHERE eid = ?",
         $lastname, $firstname, $middlename, $suffix, $sex, $dob, $birthplace, $birthorder, $address1, $address2, $address3, $ethnicity, $religion,
-        $ips, $fps, $pwd, $contact, $remarks, 'LOCKED', $entity_id);
+        $ips, $fps, $pwd, $contact, $remarks, 'LOCKED', $birth_registered, $mothername, $fathername, $guardian, $entity_id);
       if($res === false) {
         throw_error("update_entity_failed");
       }

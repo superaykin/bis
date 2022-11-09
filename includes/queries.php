@@ -214,7 +214,8 @@
 
       $res = query("SELECT u.* FROM sys_user AS u
         WHERE ? IN (SELECT sr.role_id FROM sys_user_role AS sr WHERE sr.user_id = u.uid)
-          AND u.uid NOT IN (SELECT teacher_id FROM devcenter_teacher WHERE center_id = ?)", 'CDC_TEACHER', $centerid);
+          AND u.uid NOT IN (SELECT teacher_id FROM devcenter_teacher WHERE center_id = ?)
+        ORDER BY u.lastname ASC", 'CDC_TEACHER', $centerid);
 
       if($res !== false) {
         return $res;
@@ -341,7 +342,8 @@
       $res = query("SELECT sr.*
         FROM sys_role AS sr
         WHERE sr.r_status = ? AND sr.role_id <> ?
-          AND sr.role_id NOT IN (SELECT role_id FROM sys_user_role WHERE user_id = ?)", 'ACTIVE', 'CARDINAL', $userid);
+          AND sr.role_id NOT IN (SELECT role_id FROM sys_user_role WHERE user_id = ?)
+        ORDER BY sr.role_type DESC", 'ACTIVE', 'CARDINAL', $userid);
       if($res !== false) {
         return $res;
       }
@@ -651,5 +653,144 @@
         } else {
           return false;
         }
+      }
+    }
+
+
+    function get_transfer_request() {
+      // // identify if user is CENTER teacher
+      $is_teacher = lookup_role('CDC_TEACHER');
+      if($is_teacher === true) {
+        $res = query("SELECT ct.*,
+          	o.class_name AS origin_code, o.class_desc AS origin_desc, CONCAT(ou.lastname,', ', ou.firstname) AS origin_teacher, oc.centername AS origin_center,
+          	t.class_name AS target_code, t.class_desc AS target_desc, CONCAT(tu.lastname,', ', tu.firstname) AS target_teacher, tc.centername AS target_center,
+          	CONCAT(a.lastname,', ', a.firstname) AS requestor,
+          	CONCAT(e.lastname,', ', e.firstname) AS student,
+          	cl.student_idno AS student_no
+          FROM class_transfer AS ct
+          LEFT JOIN class AS o ON ct.origin_cid = o.cid
+          	LEFT JOIN sys_user AS ou ON o.teacher_id = ou.uid
+          	LEFT JOIN devcenter AS oc ON o.center_id = oc.cdc_id
+          LEFT JOIN class AS t ON ct.target_cid = t.cid
+          	LEFT JOIN sys_user AS tu ON t.teacher_id = tu.uid
+          	LEFT JOIN devcenter AS tc ON t.center_id = tc.cdc_id
+          LEFT JOIN sys_user AS a ON ct.actor_id = a.uid
+          LEFT JOIN class_listing AS cl ON ct.student_id = cl.sid
+          LEFT JOIN entity AS e ON cl.entity_id = e.eid
+          WHERE t.teacher_id = ? AND ct.transfer_status = 'PENDING'", $GLOBALS["_uid"]);
+      } else {
+        // identify if admin
+        $is_admin = lookup_role('SYS_ADMIN');
+        if($is_admin === true) {
+          $res = query("SELECT ct.*,
+          	o.class_name AS origin_code, o.class_desc AS origin_desc, CONCAT(ou.lastname,', ', ou.firstname) AS origin_teacher, oc.centername AS origin_center,
+          	t.class_name AS target_code, t.class_desc AS target_desc, CONCAT(tu.lastname,', ', tu.firstname) AS target_teacher, tc.centername AS target_center,
+          	CONCAT(a.lastname,', ', a.firstname) AS requestor,
+          	CONCAT(e.lastname,', ', e.firstname) AS student,
+          	cl.student_idno AS student_no
+          FROM class_transfer AS ct
+          LEFT JOIN class AS o ON ct.origin_cid = o.cid
+          	LEFT JOIN sys_user AS ou ON o.teacher_id = ou.uid
+          	LEFT JOIN devcenter AS oc ON o.center_id = oc.cdc_id
+          LEFT JOIN class AS t ON ct.target_cid = t.cid
+          	LEFT JOIN sys_user AS tu ON t.teacher_id = tu.uid
+          	LEFT JOIN devcenter AS tc ON t.center_id = tc.cdc_id
+          LEFT JOIN sys_user AS a ON ct.actor_id = a.uid
+          LEFT JOIN class_listing AS cl ON ct.student_id = cl.sid
+          LEFT JOIN entity AS e ON cl.entity_id = e.eid
+          WHERE ct.transfer_status = 'PENDING'
+            ORDER BY ct.transfer_date ASC");
+        } else {
+          // user only role cannot view notifications
+          // should only return 0 results
+          $res = query("SELECT ct.*,
+          	o.class_name AS origin_code, o.class_desc AS origin_desc, CONCAT(ou.lastname,', ', ou.firstname) AS origin_teacher, oc.centername AS origin_center,
+          	t.class_name AS target_code, t.class_desc AS target_desc, CONCAT(tu.lastname,', ', tu.firstname) AS target_teacher, tc.centername AS target_center,
+          	CONCAT(a.lastname,', ', a.firstname) AS requestor,
+          	CONCAT(e.lastname,', ', e.firstname) AS student,
+          	cl.student_idno AS student_no
+          FROM class_transfer AS ct
+          LEFT JOIN class AS o ON ct.origin_cid = o.cid
+          	LEFT JOIN sys_user AS ou ON o.teacher_id = ou.uid
+          	LEFT JOIN devcenter AS oc ON o.center_id = oc.cdc_id
+          LEFT JOIN class AS t ON ct.target_cid = t.cid
+          	LEFT JOIN sys_user AS tu ON t.teacher_id = tu.uid
+          	LEFT JOIN devcenter AS tc ON t.center_id = tc.cdc_id
+          LEFT JOIN sys_user AS a ON ct.actor_id = a.uid
+          LEFT JOIN class_listing AS cl ON ct.student_id = cl.sid
+          LEFT JOIN entity AS e ON cl.entity_id = e.eid
+          WHERE t.teacher_id = ? AND ct.transfer_status = 'PENDING'", '1');
+        }
+      }
+
+      return $res;
+
+    }
+
+    function get_transfer_request_info($request_id) {
+      $res = query("SELECT ct.*,
+          o.class_name AS origin_code, o.class_desc AS origin_desc, CONCAT(ou.lastname,', ', ou.firstname) AS origin_teacher, oc.centername AS origin_center,
+          t.class_name AS target_code, t.class_desc AS target_desc, CONCAT(tu.lastname,', ', tu.firstname) AS target_teacher, tc.centername AS target_center,
+          CONCAT(r.lastname,', ', r.firstname) AS requestor,
+          CONCAT(e.lastname,', ', e.firstname) AS student,
+          e.eid,
+          CONCAT(a.lastname,', ', a.firstname) AS approver,
+          cl.student_idno AS student_no
+        FROM class_transfer AS ct
+        LEFT JOIN class AS o ON ct.origin_cid = o.cid
+          LEFT JOIN sys_user AS ou ON o.teacher_id = ou.uid
+          LEFT JOIN devcenter AS oc ON o.center_id = oc.cdc_id
+        LEFT JOIN class AS t ON ct.target_cid = t.cid
+          LEFT JOIN sys_user AS tu ON t.teacher_id = tu.uid
+          LEFT JOIN devcenter AS tc ON t.center_id = tc.cdc_id
+        LEFT JOIN sys_user AS r ON ct.actor_id = r.uid
+        LEFT JOIN class_listing AS cl ON ct.student_id = cl.sid
+        LEFT JOIN entity AS e ON cl.entity_id = e.eid
+        LEFT JOIN sys_user AS a ON ct.approver_id = a.uid
+        WHERE ct.ctid = ? LIMIT 1", $request_id);
+      if($res === false) {
+        return false;
+      } else {
+        if(count($res) <= 0) {
+          return false;
+        } else {
+          return $res[0];
+        }
+      }
+    }
+
+
+    function has_pending_transfer($student_id) {
+      // verify if student has pending transfers
+      $res = query("SELECT * FROM class_transfer WHERE student_id = ?", $student_id);
+      if($res !== false) {
+        if(count($res) >= 1) {
+          // has pending transfers
+          return true;
+        } else {
+          return false;
+        }
+      } else {
+        throw_error("get_pending_transfer_failed");
+      }
+    }
+
+
+    function get_religion() {
+      $res = query("SELECT * FROM settings_religion ORDER BY religion ASC");
+      if($res === false) {
+        return false;
+      } else {
+        return $res;
+      }
+    }
+
+
+    function get_ethnicity() {
+      $res = query("SELECT * FROM settings_ethnicity ORDER BY ethnicity ASC");
+      if($res === false) {
+        return false;
+      } else {
+        return $res;
       }
     }

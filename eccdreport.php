@@ -227,7 +227,7 @@
 
 
 
-          $pdf->Ln(5);
+          $pdf->Ln(0.1);
           $pdf->SetFont('Arial','', $text5);
           $pdf->Cell(325,4, '++++ Nothing follows ++++','1','','C');
           $pdf->Ln(10);
@@ -259,11 +259,11 @@
 
           // query the list
           $res = query("SELECT c.class_name, e.*,
-            	(SELECT interpretation FROM eccd_interpretation WHERE entity_id = cl.entity_id
+            	(SELECT interpretation FROM eccd_interpretation WHERE entity_id = cl.entity_id AND class_id = c.cid
                 ORDER BY test_date DESC LIMIT 1) AS interpretation,
             	(SELECT ns.nstat FROM nutritional_history AS nh
               		LEFT JOIN sys_nutrition_stat AS ns ON nh.nstat_id = ns.nstat_code
-              	WHERE nh.entity_id = cl.entity_id
+              	WHERE nh.entity_id = cl.entity_id AND class_id = c.cid
               	ORDER BY ns_testdate DESC LIMIT 1) AS nstat
             FROM class_listing AS cl
             	LEFT JOIN entity AS e ON cl.entity_id = e.eid

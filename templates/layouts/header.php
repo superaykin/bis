@@ -5,7 +5,7 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <title>eCMS</title>
   <!-- Favicon-->
-  <link rel="icon" href="./eams.ico" type="image/x-icon">
+  <link rel="icon" href=".\public\images\ecmspanabo.png" type="image/x-icon">
   <meta http-equiv="refresh" content="1200">
   <!-- Tell the browser to be responsive to screen width -->
   <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
@@ -59,9 +59,41 @@
 
       <div class="navbar-custom-menu">
         <ul class="nav navbar-nav">
-          <!-- Messages: style can be found in dropdown.less-->
 
           <?php if(isset($_SESSION["ecmspanabo"])) : ?>
+            <!-- Messages: style can be found in dropdown.less-->
+            <?php
+            $trans_req = get_transfer_request();
+            $rc = count($trans_req);
+            ?>
+
+            <li class="dropdown notifications-menu">
+              <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                <i class="fa fa-bell-o"></i>
+                <?php if($rc >= 1) : ?>
+                  <span class="label label-warning"><?= $rc ?></span>
+                <?php endif; ?>
+              </a>
+              <ul class="dropdown-menu">
+                <li class="header">Your notifications</li>
+                <li>
+                  <!-- inner menu: contains the actual data -->
+                  <ul class="menu">
+                    <?php foreach($trans_req AS $rt) : ?>
+                    <li>
+                      <a href="./class.php?page=transreqinfo&tid=<?= $rt["ctid"] ?>">
+                        <i class="fa fa-users text-aqua"></i> Transfer request from <?= $rt["requestor"] ?>
+                      </a>
+                    </li>
+                    <?php endforeach; ?>
+
+                  </ul>
+                </li>
+                <li class="footer"><a href="./class.php?page=transferlist">View all</a></li>
+              </ul>
+            </li>
+
+
           <!-- User Account: style can be found in dropdown.less -->
           <li class="dropdown user user-menu">
             <a href="#" class="dropdown-toggle" data-toggle="dropdown">

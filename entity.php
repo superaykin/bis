@@ -19,7 +19,9 @@
           }
 
           $city = get_city();
-          render("./entity/registration.php", ["city" => $city]);
+          $religion = get_religion();
+          $ethnicity = get_ethnicity();
+          render("./entity/registration.php", ["city" => $city, "religion" => $religion, "ethnicity" => $ethnicity]);
 
         } else if($page == "list") {
           // count entity

@@ -27,16 +27,14 @@
               <a href="#" data-toggle="modal" data-target="#viewphotomodal">
                 <img class="profile-user-img img-responsive img-circle" src="./public/images/main-avatar.png" alt="User profile picture">
               </a>
-              <h3 class="profile-username text-center"></h3>
+              <h3 class="profile-username text-center"><?= name_format($info["lastname"], $info["firstname"], $info["middlename"], $info["suffix"], "D") ?></h3>
               <p class="text-muted text-center">
-                <strong>
-                  <?= name_format($info["lastname"], $info["firstname"], $info["middlename"], $info["suffix"], "LF") ?>
-                </strong><br/>
+                "<?= $info["nickname"] ?>"
               </p>
 
               <ul class="list-group list-group-unbordered">
                 <li class="list-group-item">
-                  <b>Age</b> <span class="pull-right text-aqua"><?= get_age($info["birthdate"]) ?> yr/s old</span>
+                  <b>Age</b> <span class="pull-right text-aqua"><?= get_age($info["birthdate"]) ?> yr old</span>
                 </li>
                 <li class="list-group-item">
                   <b>Registration date</b> <span class="pull-right text-aqua"><?= $info["registered"] ?></span>
@@ -102,12 +100,7 @@
                 </div>
 
                 <div class="row">
-                  <div class="col-md-3">
-                    <div class="form-group">
-                      <label>Sex</label>
-                      <input class="form-control" type="text" value="<?= $info["sex"] ?>" readonly />
-                    </div>
-                  </div>
+
                   <div class="col-md-9">
                     <div class="form-group">
                       <label>Home Address</label>
@@ -120,6 +113,13 @@
                       }
                       ?>
                       <input type="text" class="form-control" value="<?= $ad ?>" readonly />
+                    </div>
+                  </div>
+
+                  <div class="col-md-3">
+                    <div class="form-group">
+                      <label>Sex</label>
+                      <input class="form-control" type="text" value="<?= $info["sex"] ?>" readonly />
                     </div>
                   </div>
 
@@ -159,13 +159,12 @@
                       <input class="form-control" type="text" value="<?= $info["religion"] ?>" readonly />
                     </div>
                   </div>
-                  <div class="col-md-3">
-                    <div class="form-group">
-                      <label>Contact No.</label>
-                      <input class="form-control" type="text" value="<?= $info["contactno"] ?>" readonly />
-                    </div>
-                  </div>
 
+
+
+                </div>
+                <h4 class="rheader bg-aqua">IP's / 4P's / PWD</h4>
+                <div class="row">
 
                   <div class="col-md-3">
                     <div class="form-group">
@@ -187,12 +186,44 @@
                     </div>
                   </div>
 
+
+                </div>
+
+                <h4 class="rheader bg-aqua">Parents / Guardian Information</h4>
+                <div class="row">
+                  <div class="col-md-3">
+                    <div class="form-group">
+                      <label>Mother's Name</label>
+                      <input class="form-control" type="text" value="<?= $info["mother_name"] ?>" readonly />
+                    </div>
+                  </div>
+                  <div class="col-md-3">
+                    <div class="form-group">
+                      <label>Father's Name</label>
+                      <input class="form-control" type="text" value="<?= $info["father_name"] ?>" readonly />
+                    </div>
+                  </div>
+                  <div class="col-md-3">
+                    <div class="form-group">
+                      <label>Guardian's Name</label>
+                      <input class="form-control" type="text" value="<?= $info["guardian_name"] ?>" readonly />
+                    </div>
+                  </div>
+
+                  <div class="col-md-3">
+                    <div class="form-group">
+                      <label>Contact No.</label>
+                      <input class="form-control" type="text" value="<?= $info["contactno"] ?>" readonly />
+                    </div>
+                  </div>
+
                   <div class="col-md-12">
                     <div class="form-group">
-                      <label>Remarks</label>
+                      <label>Profile Remarks</label>
                       <textarea class="form-control" rows="5" readonly><?= $info["profile_remarks"] ?></textarea>
                     </div>
                   </div>
+
                 </div>
 
 

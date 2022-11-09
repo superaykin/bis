@@ -42,6 +42,22 @@
           } else {
             gotomain();
           }
+
+        } else if($page == "transferlist") {
+          // class request trasnfers
+          $list = get_transfer_request();
+          render("./class/transferlist.php", ["requests" => $list]);
+
+        } else if($page == "transreqinfo") {
+          // class request info
+          if(isset($_GET["tid"])) {
+            $trans_id = valinput($_GET["tid"]);
+          } else {
+            //gotomain();
+            exit("NO ID SELECTED");
+          }
+          $info = get_transfer_request_info($trans_id);
+          render("./class/transferinfo.php", ["info" => $info]);
         } else {
           gotomain();
         }

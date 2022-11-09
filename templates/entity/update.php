@@ -40,7 +40,7 @@
     <section class="content-header">
       <h1>
         Profile
-        <small>Update</small>
+        <small>Update Information</small>
       </h1>
       <ol class="breadcrumb">
         <li><a href="#"><i class="fa fa-dashboard"></i>eCMS Panabo</a></li>
@@ -169,6 +169,73 @@
                         <div class="help-block with-errors"></div>
                     </div>
                   </div>
+
+                  <div class="col-md-3">
+                    <div class="form-group">
+                        <label>Birth Registered</label>
+                        <select name="birthregistered" class="form-control" required>
+                          <option <?php if($info["birth_registered"] == "YES") { echo 'selected'; } ?> value="YES">YES</option>
+                          <option <?php if($info["birth_registered"] == "NO") { echo 'selected'; } ?> value="NO">NO</option>
+                        </select>
+                        <div class="help-block with-errors"></div>
+                    </div>
+                  </div>
+
+                  <div class="col-md-3">
+                    <div class="form-group">
+                        <label>Religion</label>
+                        <input type="text" name="religion" class="form-control" class="form-control" value="<?= $info["religion"] ?>" />
+                        <div class="help-block with-errors"></div>
+                    </div>
+                  </div>
+                  <div class="col-md-3">
+                    <div class="form-group">
+                        <label>Ethnicity</label>
+                        <input type="text" name="ethnicity" class="form-control" class="form-control" value="<?= $info["ethnicity"] ?>" />
+                        <div class="help-block with-errors"></div>
+                    </div>
+                  </div>
+
+
+
+                </div>
+
+                <h4 class="rheader bg-primary">Parents & Guardian Information</h4>
+                <div class="row">
+                  <div class="col-md-3">
+                    <div class="form-group">
+                        <label>Mother's Name</label>
+                        <input type="text" name="mothername" class="form-control" class="form-control" placeholder="" value="<?= $info["mother_name"] ?>" />
+                        <div class="help-block with-errors"></div>
+                    </div>
+                  </div>
+                  <div class="col-md-3">
+                    <div class="form-group">
+                        <label>Father's Name</label>
+                        <input type="text" name="fathername" class="form-control" class="form-control" placeholder="" value="<?= $info["father_name"] ?>" />
+                        <div class="help-block with-errors"></div>
+                    </div>
+                  </div>
+                  <div class="col-md-3">
+                    <div class="form-group">
+                        <label>Guardian's Name</label>
+                        <input type="text" name="guardian" class="form-control" class="form-control" placeholder="" value="<?= $info["guardian_name"] ?>" />
+                        <div class="help-block with-errors"></div>
+                    </div>
+                  </div>
+
+                  <div class="col-md-3">
+                    <div class="form-group">
+                        <label>Contact No.</label>
+                        <input type="text" name="contactno" class="form-control" class="form-control" placeholder="09XX-XXX-XXXX" value="<?= $info["contactno"] ?>" />
+                        <div class="help-block with-errors"></div>
+                    </div>
+                  </div>
+
+                </div>
+
+                <h4 class="rheader bg-primary">IP's / 4P's / PWD</h4>
+                <div class="row">
                   <div class="col-md-3">
                     <div class="form-group">
                         <label>IPS Member</label>
@@ -202,36 +269,15 @@
                         <div class="help-block with-errors"></div>
                     </div>
                   </div>
-                  <div class="col-md-3">
-                    <div class="form-group">
-                        <label>Religion</label>
-                        <input type="text" name="religion" class="form-control" class="form-control" value="<?= $info["religion"] ?>" />
-                        <div class="help-block with-errors"></div>
-                    </div>
-                  </div>
-                  <div class="col-md-3">
-                    <div class="form-group">
-                        <label>Ethnicity</label>
-                        <input type="text" name="ethnicity" class="form-control" class="form-control" value="<?= $info["ethnicity"] ?>" />
-                        <div class="help-block with-errors"></div>
-                    </div>
-                  </div>
-                  <div class="col-md-3">
-                    <div class="form-group">
-                        <label>Contact No.</label>
-                        <input type="text" name="contactno" class="form-control" class="form-control" placeholder="09XX-XXX-XXXX" value="<?= $info["contactno"] ?>" />
-                        <div class="help-block with-errors"></div>
-                    </div>
-                  </div>
-
-
                 </div>
+
+                <hr/>
 
                 <div class="row">
 
                   <div class="col-md-12">
                     <div class="form-group">
-                      <label>Remarks</label>
+                      <label>Profile Remarks</label>
                       <textarea class="form-control" name="remarks"><?= $info["profile_remarks"] ?></textarea>
                       <div class="help-block with-errors"></div>
                     </div>

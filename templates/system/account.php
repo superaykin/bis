@@ -103,7 +103,19 @@
             <label>Role</label>
             <select name="role" class="form-control" required>
               <option value="" disabled selected>Select role...</option>
-              <?php foreach($available_roles AS $ar) : ?>
+              <?php $legend = "";
+              foreach($available_roles AS $ar) :
+                if($legend == "") {
+                  $legend = $ar["role_type"];
+                  echo '<optgroup label="' . $legend . '">';
+                } else {
+                  if($legend <> $ar["role_type"]) {
+                    echo '</optgroup>';
+                    $legend = $ar["role_type"];
+                    echo '<optgroup label="' . $legend . '">';
+                  }
+                }
+              ?>
                 <?= '<option value="' . $ar["role_id"] . '">' . $ar["role_desc"] . '</option>' ?>
               <?php endforeach; ?>
             </select>
@@ -155,12 +167,16 @@
                 <div class="col-md-2">
                   <a href="#" data-backdrop="static" data-keyboard="false" data-toggle="modal" data-target="#changepasswordmodal" class="btn btn-info btn-flat btn-block">Change Password</a>
                 </div>
-                <div class="col-md-2">
-                  <a href="#" data-backdrop="static" data-keyboard="false" data-toggle="modal" data-target="#resetpasswordmodal" class="btn btn-warning btn-flat btn-block">Reset Password</a>
-                </div>
-                <div class="col-md-2">
-                  <a href="#" data-backdrop="static" data-keyboard="false" data-toggle="modal" data-target="#rolemodal" class="btn btn-success btn-flat btn-block">Set Role</a>
-                </div>
+
+                <?php if(lookup_role('SYS_ADMIN') <> false OR lookup_role('CARDINAL') <> false) : ?>
+                  <div class="col-md-2">
+                    <a href="#" data-backdrop="static" data-keyboard="false" data-toggle="modal" data-target="#resetpasswordmodal" class="btn btn-warning btn-flat btn-block">Reset Password</a>
+                  </div>
+                  <div class="col-md-2">
+                    <a href="#" data-backdrop="static" data-keyboard="false" data-toggle="modal" data-target="#rolemodal" class="btn btn-success btn-flat btn-block">Set Role</a>
+                  </div>
+                <?php endif; ?>
+
               </div>
 
               <hr/>
@@ -243,6 +259,7 @@
 
       </div>
 
+      <?php if(lookup_role('SYS_ADMIN') <> false OR lookup_role('CARDINAL') <> false) : ?>
       <div class="row">
         <div class="col-md-12">
           <div class="box box-primary">
@@ -274,6 +291,7 @@
           </div>
         </div>
       </div>
+      <?php endif; ?>
 
 
 

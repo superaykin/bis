@@ -30,6 +30,7 @@
         // check for username availability
         $res = is_username_taken($username);
         if($res == true) {
+          // if username is taken then ADD random numbers from 1-100 in the username
           $username = $username . rand(1,100);
         } else {
           break;

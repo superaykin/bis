@@ -69,12 +69,6 @@
                 <div class="row">
 
                   <div class="col-md-3">
-                    <div id="lgrp" class="form-group">
-                        <label for="lastname">Lastname</label>
-                        <input type="text" class="form-control" name="lastname" id="lastname" placeholder="Enter lastname..." required>
-                    </div>
-                  </div>
-                  <div class="col-md-3">
                     <div id="fgrp" class="form-group">
                         <label for="firstname">Firstname</label>
                         <input type="text" class="form-control" name="firstname" id="firstname" placeholder="Enter firstname..." required>
@@ -88,6 +82,14 @@
                         <div class="help-block with-errors"></div>
                     </div>
                   </div>
+
+                  <div class="col-md-3">
+                    <div id="lgrp" class="form-group">
+                        <label for="lastname">Lastname</label>
+                        <input type="text" class="form-control" name="lastname" id="lastname" placeholder="Enter lastname..." required>
+                    </div>
+                  </div>
+
                   <div class="col-md-2">
                     <div id="sgrp" class="form-group">
                         <label for="suffix">Suffix</label>
@@ -101,6 +103,14 @@
                       <input type="hidden" name="etracs_objid" id="etracs_objid" required />
                       <label style="color:white;">Verify</label>
                       <button type="button" id="searchbtn" class="btn btn-block btn-flat btn-info"><i class="fa fa-search"></i>Verify</button>
+                    </div>
+                  </div>
+
+                  <div class="col-md-3">
+                    <div id="ngrp" class="form-group">
+                        <label for="nickname">Nickname</label>
+                        <input type="text" class="form-control" name="nickname" id="nickname" placeholder="Enter nickname..." />
+                        <div class="help-block with-errors"></div>
                     </div>
                   </div>
 
@@ -128,7 +138,7 @@
                     </div>
                   </div>
 
-                  <div class="col-md-6">
+                  <div class="col-md-3">
                     <div class="form-group">
                         <label for="address">Home</label>
                         <input type="text" class="form-control" name="home" placeholder="House No./Purok/Street/Subd." required >
@@ -166,10 +176,124 @@
                   <div class="col-md-3">
                     <div class="form-group">
                         <label for="address">Birth order</label>
-                        <input type="number" class="form-control" name="birthorder" />
+                        <input type="number" class="form-control" name="birthorder" required />
                         <div class="help-block with-errors"></div>
                     </div>
                   </div>
+                  <div class="col-md-3">
+                    <div class="form-group">
+                        <label>Birth Registered</label>
+                        <select name="birthregistered" class="form-control" required>
+                          <option value="" disabled selected>Select one...</option>
+                          <option value="YES">YES</option>
+                          <option value="NO">NO</option>
+                        </select>
+                        <div class="help-block with-errors"></div>
+                    </div>
+                  </div>
+                  <div class="col-md-3">
+                    <div class="form-group">
+                        <label for="address">No of siblings</label>
+                        <input type="number" class="form-control" name="siblings" required />
+                        <div class="help-block with-errors"></div>
+                    </div>
+                  </div>
+
+                  <div class="col-md-3">
+                    <div class="form-group">
+                        <label>Religion</label>
+                        <select name="religion" class="form-control" required>
+                          <option value="" hidden disabled selected>Select religion...</option>
+
+                          <?php $legend = "";
+                            foreach($religion AS $rel) :
+                              if($legend == "") {
+                                $legend = $rel["religion"][0];
+                                echo '<optgroup label="' . $legend . '">';
+                              } else {
+                                if($legend <> $rel["religion"][0]) {
+                                  echo '</optgroup>';
+                                  $legend = $rel["religion"][0];
+                                  echo '<optgroup label="' . $legend . '">';
+                                }
+                              }
+                          ?>
+
+                            <?= '<option value="' . $rel["religion"] . '">' . $rel["religion"] . '</option>' ?>
+                          <?php endforeach; ?>
+                        </select>
+                        <div class="help-block with-errors"></div>
+                    </div>
+                  </div>
+                  <div class="col-md-3">
+                    <div class="form-group">
+                        <label>Ethnicity</label>
+                        <select name="ethnicity" class="form-control" required>
+                          <option value="" hidden disabled selected>Select ethnic group...</option>
+                          <optgroup label="UNCATEGORIZED">
+                            <option value="">NO ETHNICITY</option>
+                            <option value="">NOT AVAILABLE</option>
+                          </optgroup>
+                          <?php $legend = "";
+                            foreach($ethnicity AS $e) :
+                              if($legend == "") {
+                                $legend = $e["ethnicity"][0];
+                                echo '<optgroup label="' . $legend . '">';
+                              } else {
+                                if($legend <> $e["ethnicity"][0]) {
+                                  echo '</optgroup>';
+                                  $legend = $e["ethnicity"][0];
+                                  echo '<optgroup label="' . $legend . '">';
+                                }
+                              }
+                          ?>
+
+                            <?= '<option value="' . $e["ethnicity"] . '">' . $e["ethnicity"] . '</option>' ?>
+                          <?php endforeach; ?>
+                        </select>
+                        <div class="help-block with-errors"></div>
+                    </div>
+                  </div>
+
+
+
+                </div>
+                <h4 class="rheader bg-primary">Parents / Guardian Information</h4>
+                <div class="row">
+                  <div class="col-md-3">
+                    <div class="form-group">
+                        <label>Mother Name</label>
+                        <input type="text" name="mothername" class="form-control" class="form-control" />
+                        <div class="help-block with-errors"></div>
+                    </div>
+                  </div>
+                  <div class="col-md-3">
+                    <div class="form-group">
+                        <label>Father Name</label>
+                        <input type="text" name="fathername" class="form-control" class="form-control" />
+                        <div class="help-block with-errors"></div>
+                    </div>
+                  </div>
+                  <div class="col-md-3">
+                    <div class="form-group">
+                        <label>Guardian Name</label>
+                        <input type="text" name="guardianname" class="form-control" class="form-control" />
+                        <div class="help-block with-errors"></div>
+                    </div>
+                  </div>
+                  <div class="col-md-3">
+                    <div class="form-group">
+                        <label>Contact No.</label>
+                        <input type="text" name="contactno" class="form-control" class="form-control" placeholder="09XX-XXX-XXXX" />
+                        <div class="help-block with-errors"></div>
+                    </div>
+                  </div>
+                </div>
+
+
+
+                <h4 class="rheader bg-primary">IP's / 4P's / PWD</h4>
+                <div class="row">
                   <div class="col-md-3">
                     <div class="form-group">
                         <label>IPS Member</label>
@@ -203,47 +327,16 @@
                         <div class="help-block with-errors"></div>
                     </div>
                   </div>
-                  <div class="col-md-3">
-                    <div class="form-group">
-                        <label>Religion</label>
-                        <input type="text" name="religion" class="form-control" class="form-control" />
-                        <div class="help-block with-errors"></div>
-                    </div>
-                  </div>
-                  <div class="col-md-3">
-                    <div class="form-group">
-                        <label>Ethnicity</label>
-                        <input type="text" name="ethnicity" class="form-control" class="form-control" />
-                        <div class="help-block with-errors"></div>
-                    </div>
-                  </div>
-                  <div class="col-md-3">
-                    <div class="form-group">
-                        <label>Contact No.</label>
-                        <input type="text" name="contactno" class="form-control" class="form-control" placeholder="09XX-XXX-XXXX" />
-                        <div class="help-block with-errors"></div>
-                    </div>
-                  </div>
-                  <div class="col-md-3">
-                    <div class="form-group">
-                        <label>Birth Registered</label>
-                        <select name="birthregistered" class="form-control" required>
-                          <option value="" disabled selected>Select one...</option>
-                          <option value="YES">YES</option>
-                          <option value="NO">NO</option>
-                        </select>
-                        <div class="help-block with-errors"></div>
-                    </div>
-                  </div>
-
-
                 </div>
 
+
+
+                <hr/>
                 <div class="row">
 
                   <div class="col-md-12">
                     <div class="form-group">
-                      <label>Remarks</label>
+                      <label>Profile Remarks</label>
                       <textarea class="form-control" name="remarks"></textarea>
                       <div class="help-block with-errors"></div>
                     </div>

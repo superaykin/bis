@@ -29,6 +29,10 @@
             <form id="editform" role="form" data-toggle="validator" method="post" accept-charset="utf-8" enctype="multipart/form-data" autocomplete="off">
               <div class="col-md-12">
 
+                <div class="alert alert-info alert-dismissible">
+                  <h4><i class="icon fa fa-info"></i> A friendly reminder.</h4>
+                  In case of wrong input, please contact the CSWDO system administrator for the edit of the submitted scores.
+                </div>
 
                 <h4 class="rheader bg-primary">Child Information</h4>
                 <div class="row">
@@ -153,10 +157,11 @@
                   <?php endforeach; ?>
                 </div>
 
-                <hr/>
+
 
 
                 <?php if(lookup_role('CLASS_ADMIN') <> false) : ?>
+                  <hr/>
                   <div class="row">
 
                     <div class="col-md-3" id="editdiv">
