@@ -7,10 +7,12 @@
     // database's name
     define("DATABASE", "ecmsdb_panabo"); //
 	  // database's username
-    define("USERNAME", "ictpanabo"); //ictpanabo
+    define("USERNAME", "root"); //ictpanabo
     // database's password
-    define("PASSWORD", "cadoit7");  //cadoit7
+    define("PASSWORD", "p@55word");  //cadoit7
 
     // database's server
-    define("SERVER", "localhost:3308"); //192.168.5.200
+    define("SERVER", "192.168.40.162:3308"); //192.168.5.200
+
+
 ?>
