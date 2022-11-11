@@ -114,6 +114,32 @@
                 </p>
               </li>
 
+
+              <li class="user-body">
+                <div class="row">
+                  <div class="col-xs-4">
+                    <p>Server:</p>
+                  </div>
+                  <div class="col-xs-8">
+                    <?php if($_SERVER["HTTP_HOST"] == "localhost") : ?>
+                      <span class="text-red">LOCAL HOST</span>
+                    <?php else : ?>
+                      <span class="text-aqua">PRODUCTION</span>
+                    <?php endif; ?>
+                  </div>
+                </div>
+                <!-- /.row -->
+                <div class="row">
+                  <div class="col-xs-4">
+                    <p>Account:</p>
+                  </div>
+                  <div class="col-xs-8">
+                    <span class="text-green">ACTIVE</span>
+                  </div>
+                </div>
+              </li>
+              
+
               <!-- Menu Footer-->
               <li class="user-footer">
                 <div class="pull-left">
