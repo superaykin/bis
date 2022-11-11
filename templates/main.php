@@ -27,7 +27,7 @@
             <div class="inner">
               <h3><?= $entitycount ?></h3>
 
-              <p>Profile</p>
+              <p>Child Profile</p>
             </div>
             <div class="icon">
               <i class="fa fa-user"></i>
@@ -42,7 +42,7 @@
             <div class="inner">
               <h3><?= $centercount ?></h3>
 
-              <p>Center</p>
+              <p>Development Center</p>
             </div>
             <div class="icon">
               <i class="fa fa-home"></i>
@@ -57,7 +57,7 @@
             <div class="inner">
               <h3><?= $classcount ?></h3>
 
-              <p>Class</p>
+              <p>Center Class</p>
             </div>
             <div class="icon">
               <i class="fa fa-list-alt"></i>
@@ -86,7 +86,66 @@
 
 
       <div class="row">
-        <div class="col-md-6">
+        <div class="col-md-8">
+          <div class="box box-primary">
+            <div class="box-header with-border">
+              <h3 class="box-title">Latest Profile Entries</h3>
+              <div class="box-tools pull-right">
+                <button type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i>
+                </button>
+                <div class="btn-group">
+                </div>
+              </div>
+            </div>
+            <!-- /.box-header -->
+            <div class="box-body">
+
+              <table id="" class="table table-striped table-hover">
+                <thead>
+                  <th>Lastname</th>
+                  <th>Firstname</th>
+                  <th>Middlename</th>
+                  <th>Date of Birth</th>
+                  <th>Sex</th>
+                  <th>Date registered</th>
+                </thead>
+                <tbody>
+                  <?php foreach($latestprofiles AS $p) :
+                    if($p["sex"] == "MALE") {
+                      $sex = '<span class="label label-info">' . $p["sex"] . '</span>';
+                    } else {
+                      $sex = '<span class="label label-danger">' . $p["sex"] . '</span>';
+                    }
+                    ?>
+                    <?= '<tr>' ?>
+                      <?= '<td>' . $p["lastname"] . '</td>' ?>
+                      <?= '<td>' . $p["firstname"] . ' ' . $p["suffix"] . '</td>' ?>
+                      <?= '<td>' . $p["middlename"] . '</td>' ?>
+                      <?= '<td>' . $p["birthdate"] . '</td>' ?>
+                      <?= '<td>' . $sex . '</td>' ?>
+                      <?= '<td>' . $p["registered"] . '</td>' ?>
+                    <?= '</tr>' ?>
+                  <?php endforeach; ?>
+                </tbody>
+              </table>
+
+            </div>
+
+            <div class="box-footer">
+              <div class="row">
+                <div class="col-md-3">
+                  <a href="./entity.php?page=registration" class="btn btn-flat btn-block btn-sm btn-default">Add new entry</a>
+                </div>
+                <div class="col-md-3 pull-right">
+                  <a href="./entity.php?page=list" class="btn btn-flat btn-block btn-sm btn-info">View all profile</a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+
+        <div class="col-md-4">
           <div class="box">
             <div class="box-header with-border">
               <h3 class="box-title">Centers per Barangay</h3>
@@ -108,7 +167,7 @@
                 <tbody>
                   <?php foreach($brgycenter AS $c) : ?>
                     <?= '<tr>' ?>
-                      <?= '<td>' . $c["cdc_brgy"] . '</td>' ?>
+                      <?= '<td class="text-orange">' . $c["cdc_brgy"] . '</td>' ?>
                       <?= '<td>' . $c["centercount"] . '</td>' ?>
                     <?= '</tr>' ?>
                   <?php endforeach; ?>
@@ -118,6 +177,7 @@
             </div>
           </div>
         </div>
+
       </div>
 
 

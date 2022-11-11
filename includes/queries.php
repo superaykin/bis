@@ -496,6 +496,7 @@
     }
 
     function count_class() {
+
       if(lookup_role('SYS_ADMIN') === false) {
         // user level
         $res = query("SELECT COUNT(1) AS c FROM class
@@ -506,6 +507,7 @@
       if($res <> false) {
         return $res[0]["c"]; // return number
       }
+
     }
 
     function count_teacher() {
@@ -572,6 +574,7 @@
         return $res[0]["c"]; // return number
       }
     }
+
 
     function get_nstat_history($eid, $student_id = NULL) {
       if($student_id == NULL) {
@@ -788,6 +791,21 @@
 
     function get_ethnicity() {
       $res = query("SELECT * FROM settings_ethnicity ORDER BY ethnicity ASC");
+      if($res === false) {
+        return false;
+      } else {
+        return $res;
+      }
+    }
+
+
+    function get_profile_entries($defaultorder = "ASC") {
+      if($defaultorder == "DESC") {
+        $string = "SELECT * FROM entity ORDER BY registered DESC LIMIT 10";
+      } else {
+        $string = "SELECT * FROM entity ORDER BY registered ASC LIMIT 10";
+      }
+      $res = query($string);
       if($res === false) {
         return false;
       } else {

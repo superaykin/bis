@@ -15,7 +15,11 @@
       $teachercount = count_teacher();
       $brgycenter = get_center_count_per_brgy();
 
+      $latest_profile_entries = get_profile_entries("DESC");
+
   		render("main.php",["entitycount" => $entitycount, "classcount" => $classcount,
-        "centercount" => $centercount, "teachercount" => $teachercount, "brgycenter" => $brgycenter]);
+        "centercount" => $centercount, "teachercount" => $teachercount, "brgycenter" => $brgycenter,
+        "latestprofiles" => $latest_profile_entries
+      ]);
   	}
 ?>

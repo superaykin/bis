@@ -102,7 +102,7 @@
                     <div class="form-group">
                       <input type="hidden" name="etracs_objid" id="etracs_objid" required />
                       <label style="color:white;">Verify</label>
-                      <button type="button" id="searchbtn" class="btn btn-block btn-flat btn-info"><i class="fa fa-search"></i>Verify</button>
+                      <button type="button" id="searchbtn" class="btn btn-block btn-flat btn-warning"><i class="fa fa-search"></i>Verify</button>
                     </div>
                   </div>
 
