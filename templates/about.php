@@ -12,7 +12,7 @@
         <!-- <small>Monitoring</small> -->
       </h1>
       <ol class="breadcrumb">
-        <li><a href="./"><i class="fa fa-dashboard"></i> eCMS</a></li>
+        <li><a href="./"><i class="fa fa-dashboard"></i> BIS</a></li>
         <li class="active">SysInfo</li>
       </ol>
     </section>
@@ -31,8 +31,8 @@
       <div class="row">
         <div class="col-xs-12">
           <h2 class="page-header">
-            <i class="fa fa-globe"></i> Enhanced Child Monitoring System for Child Centers of Panabo City.
-            <small class="pull-right">Deployment: 2022</small>
+            <i class="fa fa-globe"></i> Barangay Information System
+            <small class="pull-right">Version: 1</small>
           </h2>
         </div>
       </div>
@@ -40,8 +40,7 @@
       <div class="row">
         <div class="col-xs-12">
           <span>
-            The system is the enhanced version of the previous system Child Center Management System (CCMS). The new updated and enhanced version contains better ECCD records management, child nutritional status, and many more.
-            The system will also open for additional future modules and functions. The core of the system is still coded with PHP 7 and the database management is MySQL 5
+            Butangi diri char2x sa inyuhang system hahahahaha
           </span>
         </div>
       </div>

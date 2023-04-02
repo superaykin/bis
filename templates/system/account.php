@@ -149,7 +149,7 @@
         <small>User Account</small>
       </h1>
       <ol class="breadcrumb">
-        <li><a href="#"><i class="fa fa-dashboard"></i>eCMS</a></li>
+        <li><a href="#"><i class="fa fa-dashboard"></i>BIS</a></li>
         <li class="active">System</li>
       </ol>
     </section>

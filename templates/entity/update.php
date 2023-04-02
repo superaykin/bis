@@ -43,7 +43,7 @@
         <small>Update Information</small>
       </h1>
       <ol class="breadcrumb">
-        <li><a href="#"><i class="fa fa-dashboard"></i>eCMS Panabo</a></li>
+        <li><a href="#"><i class="fa fa-dashboard"></i>BIS Panabo</a></li>
         <li class="active">Profile</li>
       </ol>
     </section>

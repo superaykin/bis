@@ -66,9 +66,9 @@
           <div class="nav-tabs-custom">
             <ul class="nav nav-tabs">
               <li class="active"><a href="#tab1" data-toggle="tab">Personal Info</a></li>
-              <li><a href="#tab2" data-toggle="tab">Class History</a></li>
+              <!-- <li><a href="#tab2" data-toggle="tab">Class History</a></li>
               <li><a href="#tab3" data-toggle="tab">ECCD</a></li>
-              <li><a href="#tab4" data-toggle="tab">Nutritional Status</a></li>
+              <li><a href="#tab4" data-toggle="tab">Nutritional Status</a></li> -->
             </ul>
             <div class="tab-content">
               <div class="active tab-pane" id="tab1">
@@ -189,42 +189,7 @@
 
                 </div>
 
-                <h4 class="rheader bg-aqua">Parents / Guardian Information</h4>
-                <div class="row">
-                  <div class="col-md-3">
-                    <div class="form-group">
-                      <label>Mother's Name</label>
-                      <input class="form-control" type="text" value="<?= $info["mother_name"] ?>" readonly />
-                    </div>
-                  </div>
-                  <div class="col-md-3">
-                    <div class="form-group">
-                      <label>Father's Name</label>
-                      <input class="form-control" type="text" value="<?= $info["father_name"] ?>" readonly />
-                    </div>
-                  </div>
-                  <div class="col-md-3">
-                    <div class="form-group">
-                      <label>Guardian's Name</label>
-                      <input class="form-control" type="text" value="<?= $info["guardian_name"] ?>" readonly />
-                    </div>
-                  </div>
-
-                  <div class="col-md-3">
-                    <div class="form-group">
-                      <label>Contact No.</label>
-                      <input class="form-control" type="text" value="<?= $info["contactno"] ?>" readonly />
-                    </div>
-                  </div>
-
-                  <div class="col-md-12">
-                    <div class="form-group">
-                      <label>Profile Remarks</label>
-                      <textarea class="form-control" rows="5" readonly><?= $info["profile_remarks"] ?></textarea>
-                    </div>
-                  </div>
-
-                </div>
+                
 
 
               </div>

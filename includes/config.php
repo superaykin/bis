@@ -18,16 +18,16 @@
     if (!preg_match("{(?:login|logout)\.php$}", $_SERVER["PHP_SELF"]))
     {
 
-      if (empty($_SESSION["ecmspanabo"]["application"])) {
+      if (empty($_SESSION["bis"]["application"])) {
         redirect("login.php");
       }
-      else if($_SESSION["ecmspanabo"]["application"] != "ecmspanabo") {
+      else if($_SESSION["bis"]["application"] != "bis") {
         redirect("login.php");
       }
-      else if($_SESSION["ecmspanabo"]["application"] == "ecmspanabo") {
+      else if($_SESSION["bis"]["application"] == "bis") {
         // logged in
         // verify the session
-        $result = verify_session($_SESSION["ecmspanabo"]["session_code"]);
+        $result = verify_session($_SESSION["bis"]["session_code"]);
         if($result === "1000") {
           // allowed to access
 
@@ -46,11 +46,11 @@
 
 
       // set global variables
-      $GLOBALS["_uid"] = $_SESSION["ecmspanabo"]["userid"];
-      $GLOBALS["_uname"] = $_SESSION["ecmspanabo"]["username"];
-      $GLOBALS["_fullname"] = $_SESSION["ecmspanabo"]["fullname"];
-      $GLOBALS["_utitle"] = $_SESSION["ecmspanabo"]["userdesc"];
-      $GLOBALS["_sescode"] = $_SESSION["ecmspanabo"]["session_code"];
+      $GLOBALS["_uid"] = $_SESSION["bis"]["userid"];
+      $GLOBALS["_uname"] = $_SESSION["bis"]["username"];
+      $GLOBALS["_fullname"] = $_SESSION["bis"]["fullname"];
+      $GLOBALS["_utitle"] = $_SESSION["bis"]["userdesc"];
+      $GLOBALS["_sescode"] = $_SESSION["bis"]["session_code"];
 
 
       $GLOBALS["_codings"] = ["A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z",

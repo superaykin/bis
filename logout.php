@@ -3,7 +3,7 @@
     // configuration
     require("./includes/config.php");
 
-	if(!isset($_SESSION["ecmspanabo"])) {
+	if(!isset($_SESSION["bis"])) {
 		redirect("./");
 	}
 

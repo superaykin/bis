@@ -3,9 +3,9 @@
 <head>
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <title>eCMS</title>
+  <title>BIS</title>
   <!-- Favicon-->
-  <link rel="icon" href=".\public\images\ecmspanabo.png" type="image/x-icon">
+  <link rel="icon" href=".\public\images\bis.png" type="image/x-icon">
   <meta http-equiv="refresh" content="1200">
   <!-- Tell the browser to be responsive to screen width -->
   <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
@@ -37,16 +37,16 @@
   <!-- Google Font -->
   <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700,300italic,400italic,600italic">
 </head>
-<body class="hold-transition fixed skin-purple sidebar-mini">
+<body class="hold-transition fixed skin-yellow-light sidebar-mini">
 <div class="wrapper">
 
   <header class="main-header">
     <!-- Logo -->
     <a href="index.php" class="logo">
       <!-- mini logo for sidebar mini 50x50 pixels -->
-      <span class="logo-mini"><b>CM</b></span>
+      <span class="logo-mini"><b>BIS</b></span>
       <!-- logo for regular state and mobile devices -->
-      <span class="logo-lg"><b>eCMS</b></span>
+      <span class="logo-lg"><b>BIS</b></span>
     </a>
     <!-- Header Navbar: style can be found in header.less -->
 
@@ -60,38 +60,14 @@
       <div class="navbar-custom-menu">
         <ul class="nav navbar-nav">
 
-          <?php if(isset($_SESSION["ecmspanabo"])) : ?>
+          <?php if(isset($_SESSION["bis"])) : ?>
             <!-- Messages: style can be found in dropdown.less-->
             <?php
             $trans_req = get_transfer_request();
             $rc = count($trans_req);
             ?>
 
-            <li class="dropdown notifications-menu">
-              <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-                <i class="fa fa-bell-o"></i>
-                <?php if($rc >= 1) : ?>
-                  <span class="label label-warning"><?= $rc ?></span>
-                <?php endif; ?>
-              </a>
-              <ul class="dropdown-menu">
-                <li class="header">Your notifications</li>
-                <li>
-                  <!-- inner menu: contains the actual data -->
-                  <ul class="menu">
-                    <?php foreach($trans_req AS $rt) : ?>
-                    <li>
-                      <a href="./class.php?page=transreqinfo&tid=<?= $rt["ctid"] ?>">
-                        <i class="fa fa-users text-aqua"></i> Transfer request from <?= $rt["requestor"] ?>
-                      </a>
-                    </li>
-                    <?php endforeach; ?>
 
-                  </ul>
-                </li>
-                <li class="footer"><a href="./class.php?page=transferlist">View all</a></li>
-              </ul>
-            </li>
 
 
           <!-- User Account: style can be found in dropdown.less -->
@@ -100,7 +76,7 @@
               <!-- <img src="./AdminLTE/dist/img/user-avatar-trans.png" class="user-image" alt="User Image"> -->
 	             <i class="fa fa-user"></i>
               <span class="hidden-xs">
-      				      <?php echo strtoupper($_SESSION["ecmspanabo"]["fullname"]); ?>
+      				      <?php echo strtoupper($_SESSION["bis"]["fullname"]); ?>
       			  </span>
             </a>
             <ul class="dropdown-menu">
@@ -109,8 +85,8 @@
                 <img src="./public/AdminLTE/dist/img/user-avatar-trans.png" class="img-circle" alt="User Image">
 
                 <p>
-                  <?php echo $_SESSION["ecmspanabo"]["fullname"]; ?>
-                  <small><?php echo $_SESSION["ecmspanabo"]["userdesc"]; ?></small>
+                  <?php echo $_SESSION["bis"]["fullname"]; ?>
+                  <small><?php echo $_SESSION["bis"]["userdesc"]; ?></small>
                 </p>
               </li>
 
@@ -138,7 +114,7 @@
                   </div>
                 </div>
               </li>
-              
+
 
               <!-- Menu Footer-->
               <li class="user-footer">

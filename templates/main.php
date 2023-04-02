@@ -12,7 +12,7 @@
         <!-- <small>Monitoring</small> -->
       </h1>
       <ol class="breadcrumb">
-        <li><a href="./"><i class="fa fa-dashboard"></i> eCMS</a></li>
+        <li><a href="./"><i class="fa fa-dashboard"></i> BIS</a></li>
         <li class="active">Dashboard</li>
       </ol>
     </section>
@@ -27,7 +27,7 @@
             <div class="inner">
               <h3><?= $entitycount ?></h3>
 
-              <p>Child Profile</p>
+              <p>Profile</p>
             </div>
             <div class="icon">
               <i class="fa fa-user"></i>
@@ -40,9 +40,9 @@
           <!-- small box -->
           <div class="small-box bg-green">
             <div class="inner">
-              <h3><?= $centercount ?></h3>
+              <h3>0</h3>
 
-              <p>Development Center</p>
+              <p>------</p>
             </div>
             <div class="icon">
               <i class="fa fa-home"></i>
@@ -55,9 +55,9 @@
           <!-- small box -->
           <div class="small-box bg-yellow">
             <div class="inner">
-              <h3><?= $classcount ?></h3>
+              <h3>0</h3>
 
-              <p>Center Class</p>
+              <p>------</p>
             </div>
             <div class="icon">
               <i class="fa fa-list-alt"></i>
@@ -70,9 +70,9 @@
           <!-- small box -->
           <div class="small-box bg-red">
             <div class="inner">
-              <h3><?= $teachercount ?></h3>
+              <h3>0</h3>
 
-              <p>CDC Teacher</p>
+              <p>-------</p>
             </div>
             <div class="icon">
               <i class="fa fa-users"></i>
@@ -86,7 +86,7 @@
 
 
       <div class="row">
-        <div class="col-md-8">
+        <div class="col-md-12">
           <div class="box box-primary">
             <div class="box-header with-border">
               <h3 class="box-title">Latest Profile Entries</h3>
@@ -145,38 +145,7 @@
         </div>
 
 
-        <div class="col-md-4">
-          <div class="box">
-            <div class="box-header with-border">
-              <h3 class="box-title">Centers per Barangay</h3>
-              <div class="box-tools pull-right">
-                <button type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i>
-                </button>
-                <div class="btn-group">
-                </div>
-              </div>
-            </div>
-            <!-- /.box-header -->
-            <div class="box-body">
 
-              <table id="cdcbrgytable" class="table table-striped table-bordered table-hover">
-                <thead>
-                  <th>Barangay</th>
-                  <th>No. of Centers</th>
-                </thead>
-                <tbody>
-                  <?php foreach($brgycenter AS $c) : ?>
-                    <?= '<tr>' ?>
-                      <?= '<td class="text-orange">' . $c["cdc_brgy"] . '</td>' ?>
-                      <?= '<td>' . $c["centercount"] . '</td>' ?>
-                    <?= '</tr>' ?>
-                  <?php endforeach; ?>
-                </tbody>
-              </table>
-
-            </div>
-          </div>
-        </div>
 
       </div>
 

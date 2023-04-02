@@ -76,13 +76,13 @@
 
     function logout()
     {
-        $result = query("UPDATE sys_session SET ses_status = ? WHERE ses_code = ?", 'EXPIRED', $_SESSION["ecmspanabo"]["session_code"]);
+        $result = query("UPDATE sys_session SET ses_status = ? WHERE ses_code = ?", 'EXPIRED', $_SESSION["bis"]["session_code"]);
         if($result === false) {
           exit("ERROR UPDATE SESSION STATUS");
         }
 
         // unset any session variables
-        $_SESSION["ecmspanabo"] = [];
+        $_SESSION["bis"] = [];
 
         // expire cookie
         if (!empty($_COOKIE[session_name()]))
@@ -91,7 +91,7 @@
         }
         // destroy session
         //session_destroy();
-		    unset($_SESSION["ecmspanabo"]);
+		    unset($_SESSION["bis"]);
 
         redirect("./");
     }
@@ -176,8 +176,8 @@
     function storetologs($action) {
       // get vars
   		$cdt = date("Y-m-d H:i:s");
-  		$userid = $_SESSION["ecmspanabo"]["userid"];
-      $scode = $_SESSION["ecmspanabo"]["session_code"];
+  		$userid = $_SESSION["bis"]["userid"];
+      $scode = $_SESSION["bis"]["session_code"];
   		$logid = create_uuid("LOG");
       $details = valinputupper($action);
 
@@ -318,10 +318,10 @@
 
     function validate_form_var($target) {
       // search for form variable in the user session
-      $key = array_search($target, $_SESSION["ecmspanabo"]["frmses"], true);
+      $key = array_search($target, $_SESSION["bis"]["frmses"], true);
       if($key !== false) {
       	// found and remove the target from the array
-        unset($_SESSION["ecmspanabo"]["frmses"][$key]);
+        unset($_SESSION["bis"]["frmses"][$key]);
           return true;
       } else {
       	  return false;
@@ -330,7 +330,7 @@
 
     function generate_form_var() {
       $ses = generate_unique_code(15);
-      array_push($_SESSION["ecmspanabo"]["frmses"], $ses);
+      array_push($_SESSION["bis"]["frmses"], $ses);
       return $ses;
     }
 
@@ -407,7 +407,7 @@
 
     function is_allowed($allowed) {
       // this function will identify if user is allowed on a certain function of the system
-      $user_access = $_SESSION["ecmspanabo"]["role"];
+      $user_access = $_SESSION["bis"]["role"];
 
       $res = false;
       foreach($allowed AS $a) {
@@ -424,7 +424,7 @@
 
 
     function lookup_role($role) {
-      $user_access = $_SESSION["ecmspanabo"]["role"];
+      $user_access = $_SESSION["bis"]["role"];
 
        foreach ($user_access as $key => $val) {
            if ($val['role_id'] === $role) {

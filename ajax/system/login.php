@@ -42,13 +42,13 @@
               //print_r($role); exit();
 
               // set session data
-              $_SESSION["ecmspanabo"] = [
+              $_SESSION["bis"] = [
                   "userid" => $row["uid"],
                   "username" => $row["username"],
                   "fullname" => name_format($row["lastname"], $row["firstname"], $row["middlename"], $row["suffix"], "LF"),
                   "userdesc" => $row["userdesc"],
                   "session_code" => $session_code,
-                  "application" => "ecmspanabo",
+                  "application" => "bis",
                   "frmses" => ["sample"],
                   "role" => $role
               ];
