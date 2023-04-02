@@ -5,7 +5,7 @@
 	--------------------------------------------------- */
 
     // database's name
-    define("DATABASE", "ecmsdb_panabo"); //
+    define("DATABASE", "bis_db"); //
 	  // database's username
     define("USERNAME", "ictpanabo"); //ictpanabo
     // database's password

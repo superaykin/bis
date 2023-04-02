@@ -63,8 +63,8 @@
           <?php if(isset($_SESSION["bis"])) : ?>
             <!-- Messages: style can be found in dropdown.less-->
             <?php
-            $trans_req = get_transfer_request();
-            $rc = count($trans_req);
+            // $trans_req = get_transfer_request();
+            // $rc = count($trans_req);
             ?>
 
 
